@@ -44,6 +44,7 @@ export class VendorsComponent implements OnInit {
   searchColumns: ColumnInfo[] = [
     { column_name: 'name', data_type: 'text' },
     { column_name: 'email', data_type: 'text' },
+    { column_name: 'type', data_type: 'text' },
     { column_name: 'total_purchase', data_type: 'money' }
   ];
 

@@ -143,7 +143,7 @@ export class UpdateVendorComponent implements OnInit {
         next: ( res ) => {
 
           if ( !res.success ) {
-    
+
             this.success = false;
     
           } else {

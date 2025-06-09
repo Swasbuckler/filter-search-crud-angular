@@ -27,6 +27,7 @@
         <div class="select-text-container">
           @for (column of searchColumns; track $index) {
             <p 
+              class="select-text"
               (mouseenter)="highlightColumn = column"
               (click)="filterAdd({
                 column: highlightColumn,
