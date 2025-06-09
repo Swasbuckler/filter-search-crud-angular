@@ -49,22 +49,25 @@ The Full Stack Application provides all of the basic CRUD actions on the data st
 
 C - Create | The creation of a new Vendor.
 
-<video src="https://github.com/user-attachments/assets/b209881c-b034-482f-820a-77e1ea59445c" height="300px" />\
+<video src="https://github.com/user-attachments/assets/b209881c-b034-482f-820a-77e1ea59445c" />\
 
 Video Example of Creating a new Vendor.
 
 R - Read | Reading of Vendor Data and Grouping Functionality
 
+<video src="https://github.com/user-attachments/assets/baf724e4-27ca-4467-8f0e-d777ac3aba51" />\
 
 Video Example of presenting data from the database to the User.
 
 U - Update | The update of an existing Vendor's data.
 
+<video src="https://github.com/user-attachments/assets/e38f9f6d-ec26-42d8-a128-cdc7a5521ac2" />\
 
 Video Example of Updating an existing Vendor.
 
 D - Delete | The deletion of an existing Vendor.
 
+<video src="https://github.com/user-attachments/assets/43819ef2-6b3a-4d69-bd84-9525919588f6" />\
 
 Video Example of Deleting an existing Vendor.
 
@@ -77,6 +80,7 @@ Below includes an image and video of how a user would implement the rules viewed
 The image of the filter rules in a form of a tree.
 
 
+
 Video Example of a User creating the Filter.
 
 ## Additional Features of the Frontend
@@ -87,6 +91,7 @@ Below showcases the other features of the Frontend.
 
 The application provides a search bar where specific Filter Rules can be quickly added.
 
+<video src="https://github.com/user-attachments/assets/0bd41b94-07ac-44f4-b3ef-64dda05830f5" />\
 
 Video Example of using the Search Bar.
 
@@ -94,5 +99,6 @@ Video Example of using the Search Bar.
 
 The application provides pagination to allow the user to go through set number / rows of the data at a time. 
 
+<video src="https://github.com/user-attachments/assets/439194b1-af77-42f8-b723-fb8698bd1e3e" />\
 
 Video Example of using the Pagination Function.
