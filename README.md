@@ -1,59 +1,97 @@
-# FilterSearchCrudAngular
+# This is a CRUD Web Application that has a developed filtering system
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.13.
+For the Full Stack Application, Angular was used to develop this Frontend while ExpressJS was used for the Backend.\
+Odoo's System and Features was a large inspiration in the creation of this system.
 
-## Development server
+Repository of the ExpressJS Backend for this application: https://github.com/Swasbuckler/filter-search-crud-server\
+It will detail the features, database and packages used, which includes details of the PostgreSQL Database and Express Server.
 
-To start a local development server, run:
+The demo of this Frontend can be accessed here: <i>Work in Progress</i>
 
-```bash
-ng serve
-```
+Repository of the Alternatively made React Frontend for this application: <i>Work in Progress</i>
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+I will return to working on this project at a later date, as I wish to focus my attention to other interested projects.
 
-## Code scaffolding
+## What have I Achieved and Learnt through this Project
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Through the development cycle of this project I have learnt a lot of key concepts related to Angular, ExpressJS and PostgreSQL.\
+For Angular specifically, I have gained a greater understand of it's Component Lifecycle, Directives and Pipes, which throughout the Development Process helped guide me to simplify the creation of certain Application Features. I hope to carry over this knowledge to future projects.
 
-```bash
-ng generate component component-name
-```
+One of the major challenges I had faced in development was handling Project Scope and Requirements.\
+Initially this Application was envisioned to be part of a larger Full Stack Application as I wanted to create an Inventory management Application. However due to the Project Timeframe I had given myself and the large number of Bugs encountered which expectedly lead to Delays. Thanks to this I had Restructured this project 3 times, cutting down the Project Scope and Requirements each time.\
+With this experience, I now know how to better plan for future projects with a set Timeline even if the Project was a Personal Project that does not have strict guidelines.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+In the end, I was able to develop a full stack application that was able to meet my satisfaction and final requirements.
 
-```bash
-ng generate --help
-```
+### Included Features
 
-## Building
+1. C.R.U.D | Application includes all CRUD Actions 
+2. Filtering System | Application includes customizable filters
 
-To build the project run:
+### Excluded Features
 
-```bash
-ng build
-```
+1. User Login | Was Out of Scope
+2. Charts and Graphs | Was Out of Scope
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Packages Used for the Frontend
 
-## Running unit tests
+1. Angular v19 | For the Frontend Framework
+2. Luxon | For Datetime management
+3. Font Awesome | For UI Icons
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Main Features of the Application
 
-```bash
-ng test
-```
+Below showcases 2 of the main features of the Full Stack Application. The database was seeded with data related to seed Vendors for an imagined business.
 
-## Running end-to-end tests
+### C.R.U.D
 
-For end-to-end (e2e) testing, run:
+The Full Stack Application provides all of the basic CRUD actions on the data stored in the Database.
 
-```bash
-ng e2e
-```
+C - Create | The creation of a new Vendor.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-## Additional Resources
+Video Example of Creating a new Vendor.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+R - Read | Reading of Vendor Data and Grouping Functionality
+
+
+Video Example of presenting data from the database to the User.
+
+U - Update | The update of an existing Vendor's data.
+
+
+Video Example of Updating an existing Vendor.
+
+D - Delete | The deletion of an existing Vendor.
+
+
+Video Example of Deleting an existing Vendor.
+
+### Filtering System
+
+The filtering system included allows the user to create custom filter rules and group them accordingly.\
+Below includes an image and video of how a user would implement the rules viewed in the image in the Application.
+
+<img src="git_images/filter diagram.jpg" height="300px" />\
+The image of the filter rules in a form of a tree.
+
+
+Video Example of a User creating the Filter.
+
+## Additional Features of the Frontend
+
+Below showcases the other features of the Frontend.
+
+### Search Bar
+
+The application provides a search bar where specific Filter Rules can be quickly added.
+
+
+Video Example of using the Search Bar.
+
+### Pagination
+
+The application provides pagination to allow the user to go through set number / rows of the data at a time. 
+
+
+Video Example of using the Pagination Function.
