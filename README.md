@@ -1,9 +1,9 @@
 # This is a CRUD Web Application that has a developed filtering system
 
-For the Full Stack Application, Angular was used to develop this Frontend while ExpressJS was used for the Backend.\
+For the Full Stack Application, Angular was used to develop this Frontend while Express was used for the Backend.\
 Odoo's System and Features was a large inspiration in the creation of this system.
 
-Repository of the ExpressJS Backend for this application: https://github.com/Swasbuckler/filter-search-crud-server\
+Repository of the Express Backend for this application: https://github.com/Swasbuckler/filter-search-crud-server\
 It will detail the features, database and packages used, which includes details of the PostgreSQL Database and Express Server.
 
 The demo of this Frontend can be accessed here: <i>Work in Progress</i>
@@ -14,7 +14,7 @@ I will return to working on this project at a later date, as I wish to focus my 
 
 ## What have I Achieved and Learnt through this Project
 
-Through the development cycle of this project I have learnt a lot of key concepts related to Angular, ExpressJS and PostgreSQL.\
+Through the development cycle of this project I have learnt a lot of key concepts related to Angular, Express and PostgreSQL.\
 For Angular specifically, I have gained a greater understand of it's Component Lifecycle, Directives and Pipes, which throughout the Development Process helped guide me to simplify the creation of certain Application Features. I hope to carry over this knowledge to future projects.
 
 One of the major challenges I had faced in development was handling Project Scope and Requirements.\
