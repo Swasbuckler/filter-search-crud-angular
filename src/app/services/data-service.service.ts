@@ -8,7 +8,7 @@ import { GroupFilter, SortType, VendorForm } from './definitions';
 })
 export class DataServiceService {
 
-  private apiURL: string = process.env['FRONTEND_URL']!;
+  private apiURL: string = process.env['BACKEND_URL']!;
 
   constructor(private http: HttpClient) {}
 
