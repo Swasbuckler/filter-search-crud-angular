@@ -79,7 +79,7 @@ Below includes an image and video of how a user would implement the rules viewed
 <img src="git_images/filter diagram.jpg" height="300px" />\
 The image of the filter rules in a form of a tree.
 
-
+<video src="https://github.com/user-attachments/assets/38197781-1d64-42a5-b987-c965bc416d2f" />\
 
 Video Example of a User creating the Filter.
 
