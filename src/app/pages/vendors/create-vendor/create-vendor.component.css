@@ -1,0 +1,132 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  padding: 10px;
+}
+
+.back-link {
+  align-self: flex-start;
+  appearance: none;
+  text-decoration: none;
+  color: initial;
+}
+
+.back-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.back-container:hover .back-button {
+  color: #5dceff;
+}
+
+.back-container fa-icon {
+  transition: all 150ms ease-in;
+}
+
+.back-container:hover fa-icon {
+  color: #5dceff;
+}
+
+.back-button {
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.form-holder {
+  width: 100%;
+  overflow: auto;
+}
+
+.form-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.input-label-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.purchase-money-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+}
+
+.purchase-money-container input {
+  flex: 1;
+}
+
+.date-input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-input-container input {
+  flex: 1;
+}
+
+.label {
+  font-size: 0.75rem;
+}
+
+.input {
+  border-width: 1px;
+  border-style: solid;
+  padding: 5px;
+}
+
+.type-input {
+  padding: 5px 5px 5px 0px;
+  cursor: pointer;
+}
+
+.error-text {
+  font-size: 0.75rem;
+  color: red;
+}
+
+.invisible {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.ending-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ending-container p {
+  font-size: 0.75rem;
+  color: red;
+}
+
+.create-button {
+  align-self: flex-start;
+  appearance: none;
+  border: none;
+  padding: 5px;
+  background-color: #edfaff;
+  transition: all 150ms ease-in-out;
+}
+
+.create-button:hover:enabled {
+  cursor: pointer;
+  background-color: #5dceff;
+}

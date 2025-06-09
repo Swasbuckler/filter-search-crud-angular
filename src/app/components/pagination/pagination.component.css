@@ -1,0 +1,65 @@
+:host {
+  max-width: 512px;
+}
+
+.pagination-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5px;
+}
+
+.page-container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 300px;
+}
+
+.page-selector {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(15px, 1fr));
+}
+
+.page-input {
+  all: unset;
+}
+
+.page-number {
+  cursor: pointer;
+}
+
+.page-number:hover {
+  color: #5dceff;
+}
+
+.page-space {
+  text-align: center;
+}
+
+.side-space {
+  width: 50px;
+}
+
+.page-button {
+  appearance: none;
+  padding: 3px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.page-button fa-icon {
+  transition: all 150ms ease-in-out;
+}
+
+.page-button:hover:enabled fa-icon {
+  color: #5dceff;
+}
+
+.limit-select {
+  padding: 3px;
+  cursor: pointer;
+}

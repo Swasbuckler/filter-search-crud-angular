@@ -1,0 +1,34 @@
+<div [class]="pointUp() ? 'point point-up' : ''"></div>
+<div class="calendar-container">
+  <div class="year-month-container">
+    <div class="guide-buttons">
+      <button class="guide-button" type="button" [disabled]="!minusDateTimeValidity({year: 1})" (click)="lastYear(selectedDateTime)">
+        <fa-icon [icon]="faBackwardStep"></fa-icon>
+      </button>
+      <button class="guide-button" type="button" [disabled]="!minusDateTimeValidity({month: 1})" (click)="lastMonth(selectedDateTime)">
+        <fa-icon [icon]="faCaretLeft"></fa-icon>
+      </button>
+    </div>
+    <h2 class="year-month-text">{{ selectedDateTime.monthShort }} {{ selectedDateTime.year }}</h2>
+    <div class="guide-buttons">
+      <button class="guide-button" type="button" [disabled]="!addDateTimeValidity({month: 1})" (click)="nextMonth(selectedDateTime)">
+        <fa-icon [icon]="faCaretRight"></fa-icon>
+      </button>
+      <button class="guide-button" type="button" [disabled]="!addDateTimeValidity({year: 1})" (click)="nextYear(selectedDateTime)">
+        <fa-icon [icon]="faForwardStep"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <div class="border-line"></div>
+  <div class="weekday-container">
+    @for (weekday of weekdayList; track $index) {
+      <div class="weekday">{{ weekday }}</div>
+    }
+  </div>
+  <div class="date-container">
+    @for (day of dayList; track $index) {
+      <div class="date" [style.color]="day.month === selectedDateTime.month ? 'black' : 'gray'" [class.active]="currentDateTime.hasSame(day, 'day')" (click)="selectDate(day)" >{{ day.day }}</div>
+    }
+  </div>
+</div>
+<div [class]="pointUp() ? '' : 'point point-down'"></div>

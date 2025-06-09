@@ -1,0 +1,77 @@
+:host {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.confirmation-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+} 
+
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: black;
+  opacity: 0.25;
+}
+
+.confirm-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 80%;
+  max-width: 1024px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 15px;
+  background-color: white;
+}
+
+.exit-button {
+  appearance: none;
+  border: none;
+  align-self: flex-end;
+  margin-left: auto;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.exit-button fa-icon {
+  transition: all 150ms ease-in-out;
+}
+
+.exit-button:hover fa-icon {
+  color: red;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+}
+
+.confirm-button {
+  appearance: none;
+  border: none;
+  padding: 5px;
+  margin: 3px 0px;
+  font-size: 1rem;
+  background-color: #edfaff;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+
+.confirm-button:hover {
+  background-color: #5dceff;
+}

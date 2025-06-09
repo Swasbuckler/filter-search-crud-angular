@@ -1,0 +1,106 @@
+<div class="filter-popup-container">
+  <div class="back" (click)="onExit( false )"></div>
+  <div class="popup-container">
+    <div class="group-filter-header">
+      <p>
+        Add Custom Filters
+      </p>
+      <button class="header-button" type="button" (click)="onExit( false )">
+        <fa-icon [icon]="faX"></fa-icon>
+      </button>
+    </div>
+    <div class="filter-data-container" #scrollContainer (scroll)="setScrollPos({x: scrollContainer.scrollLeft, y: scrollContainer.scrollTop})">
+      <div class="group-filter-header">
+        <p>
+          This Group will match
+          <select [disabled]="newFilter.filters.length < 2" [value]="newFilter.operator" (change)="changeOperator(newFilter, $event.target!)">
+            <option value="AND">All</option>
+            <option value="OR">Any</option>
+          </select>
+          of the Filters
+        </p>
+      </div>
+      @for (nextFilter of newFilter.filters; track $index) {
+        <ng-container *ngTemplateOutlet="filterTemplate; context: {
+            filter: nextFilter, 
+            filterIndex: $index, 
+            filterShift: false
+          }"
+        ></ng-container>
+      }
+      <div class="filter-button-container button-end-container">
+        <p class="filter-button-text">
+          Add New Filters:
+        </p>
+        <div class="filter-button-end-container">
+          <button class="filter-button-end" type="button" (click)="addFilter(newFilter)">
+            <fa-icon [icon]="faPlus"></fa-icon> New Filter
+          </button>
+          <button class="filter-button-end" type="button" (click)="addGroupFilter(newFilter)">
+            <fa-icon [icon]="faLayerGroup"></fa-icon> New Group
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="filter-button-end-container">
+      <button class="filter-button-end" type="button" (click)="onExit(false)">Cancel</button>
+      <button class="filter-button-end" type="button" (click)="onSave()">Save</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #filterTemplate let-filter="filter" let-filterIndex="filterIndex" let-filterShift="filterShift">
+  @if (filter | isFilterEdit) {
+    <div class="filter-container" [style.margin-left]="((filterShift ? 1 : 0) * 15) + 'px'">
+      <app-filter-selector 
+        [tableDetails]="tableDetails()" 
+        [inputFilter]="filter" 
+        (inputFilterChange)="updateFilter($event, filterIndex)" 
+        [dateFormat]="dateFormat()"
+        [scrollPos]="scrollPos()"
+      ></app-filter-selector>
+      <div class="filter-button-container"> 
+        <button class="filter-button" type="button" (click)="addFilter(filter.parent, filterIndex)">
+          <fa-icon [icon]="faPlus"></fa-icon>
+        </button>
+        <button class="filter-button" type="button" (click)="addGroupFilter(filter.parent, filterIndex)">
+          <fa-icon [icon]="faLayerGroup"></fa-icon>
+        </button>
+        <button class="filter-button" type="button" (click)="deleteFilter(filter, filterIndex)">
+          <fa-icon [icon]="faTrashCan"></fa-icon>
+        </button>
+      </div>
+    </div>
+  } @else {
+    <div class="group-filter-container" [style.margin-left]="((filterShift ? 1 : 0) * 15) + 'px'">
+      <div class="group-filter-header">
+        <p>
+          This Group will match
+          <select (change)="changeOperator(filter, $event.target!)">
+            <option value="AND">All</option>
+            <option value="OR">Any</option>
+          </select>
+          of the Filters
+        </p>
+        <div class="filter-button-container">
+          <button class="filter-button" type="button" (click)="addFilter(filter.parent, filterIndex)">
+            <fa-icon [icon]="faPlus"></fa-icon>
+          </button>
+          <button class="filter-button" type="button" (click)="addGroupFilter(filter.parent, filterIndex)">
+            <fa-icon [icon]="faLayerGroup"></fa-icon>
+          </button>
+          <button class="filter-button" type="button" (click)="deleteFilter(filter, filterIndex)">
+            <fa-icon [icon]="faTrashCan"></fa-icon>
+          </button>
+        </div>
+      </div>
+      @for (nextFilter of filter.filters; track $index) {
+        <ng-container *ngTemplateOutlet="filterTemplate; context: {
+          filter: nextFilter, 
+          filterIndex: $index, 
+          filterShift: true,
+        }"></ng-container>
+      }
+    </div>
+  }
+</ng-template>

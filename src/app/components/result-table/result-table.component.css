@@ -1,0 +1,149 @@
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 0px;
+}
+
+.table-container {
+  width: 100%;
+  overflow: auto;
+  z-index: 0;
+}
+
+.table-holder {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 5px;
+  z-index: 0;
+}
+
+.table-header {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+}
+
+.table-head {
+  text-align: left;
+  cursor: pointer;
+}
+
+.table-row {
+  border-bottom: 2px solid rgb(230, 230, 230);
+}
+
+th, td {
+  padding: 5px;
+}
+
+.table-row:nth-child(even) {
+  background-color: #f3fbff;
+}
+
+.table-row:nth-child(odd) {
+  background-color: white;
+}
+
+.over-text {
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.button-space {
+  width: 50px;
+}
+
+.button-space-cell {
+  float: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.invisible {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.edit-button {
+  appearance: none;
+  padding: 3px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.edit-button fa-icon {
+  transition: all 150ms ease-in-out;
+}
+
+.edit-button:hover fa-icon {
+  color: #5dceff;
+}
+
+.table-button-container {
+  width: 100%;
+  cursor: pointer;
+}
+
+.table-button-container fa-icon {
+  padding: 5px;
+  transition: all 150ms ease-in-out;
+}
+
+.table-button-container:hover fa-icon {
+  color: #5dceff;
+}
+
+.table-button {
+  appearance: none;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  transition: all 150ms ease-in-out;
+}
+
+.table-button-container:hover .table-button {
+  color: #5dceff;
+}
+
+.center-table {
+  text-align: center;
+  padding: 10px;
+}
+
+.loading {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 5px solid #d5f0fc; 
+  border-top: 5px solid #5dceff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(45deg); }
+  100% { transform: rotate(405deg); }
+}
+
+.reload-button {
+  appearance: none;
+  border: none;
+  padding: 5px;
+  margin: 3px 0px;
+  font-size: 1rem;
+  background-color: #edfaff;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+
+.reload-button:hover {
+  background-color: #5dceff;
+}

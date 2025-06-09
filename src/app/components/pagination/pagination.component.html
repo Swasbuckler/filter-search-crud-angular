@@ -1,0 +1,74 @@
+<div class="pagination-container">
+  <div class="side-space"></div>
+  <div class="page-container">
+    <button 
+      class="page-button"
+      type="button" 
+      [disabled]="currentPage <= pageNumbers()[0]" 
+      (click)="goToPage(pageNumbers()[0], limit())">
+      <fa-icon [icon]="faBackwardStep"></fa-icon>
+    </button>
+    <button 
+      class="page-button"
+      type="button" 
+      [disabled]="currentPage <= pageNumbers()[0]" 
+      (click)="lastPage(currentPage, limit())">
+      <fa-icon [icon]="faCaretLeft"></fa-icon>
+    </button>
+    <div class="page-selector">
+      <input 
+        class="page-input page-space" 
+        #inputPage1 
+        type="text" 
+        value="..." 
+        autocomplete="off"
+        [hidden]="distance(currentPage, pageNumbers()[0]) <= 2" 
+        (focus)="focusPageInput(inputPage1)" 
+        (blur)="blurPageInput(inputPage1)" 
+        (change)="choosePage(inputPage1, limit())" 
+      />
+      @for (page of pageNumbers(); track $index) {
+        <div 
+          class="page-number page-space"
+          [style.grid-column-start]="$index === 0 ? 
+            ((4 - currentPage) > 1 ? `${4 - currentPage}` : '1') : 
+            ''" 
+          [style.color]="currentPage === page ? '#5dceff' : ''" 
+          [hidden]="distance(currentPage, page) > 2" 
+          (click)="goToPage(page, limit())">
+          {{ page + 1 }}
+      </div>
+      }
+      <input 
+        class="page-input page-input-space page-space" 
+        #inputPage2 
+        type="text" 
+        value="..." 
+        autocomplete="off"
+        [hidden]="distance(currentPage, pageNumbers().length - 1) <= 2" 
+        (focus)="focusPageInput(inputPage2)" 
+        (blur)="blurPageInput(inputPage2)" 
+        (change)="choosePage(inputPage2, limit())" 
+      />
+    </div>
+    <button 
+      class="page-button"
+      type="button" 
+      [disabled]="currentPage >= (pageNumbers().length - 1)" 
+      (click)="nextPage(currentPage, limit())">
+      <fa-icon [icon]="faCaretRight"></fa-icon>
+    </button>
+    <button 
+      class="page-button"
+      type="button" 
+      [disabled]="currentPage >= (pageNumbers().length - 1)" 
+      (click)="goToPage(pageNumbers().length - 1, limit())">
+      <fa-icon [icon]="faForwardStep"></fa-icon>
+    </button>
+  </div>
+  <select class="limit-select side-space" [(ngModel)]="limit">
+    @for (thisLimit of limitList; track $index) {
+      <option [ngValue]="thisLimit">{{ thisLimit }}</option>
+    }
+  </select>
+</div>

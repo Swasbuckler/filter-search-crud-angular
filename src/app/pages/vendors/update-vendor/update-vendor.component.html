@@ -1,0 +1,148 @@
+<a class="back-link" routerLink="../..">
+  <div class="back-container">
+    <fa-icon [icon]="faArrowLeft"></fa-icon>
+    <button class="back-button" type="button">Back</button>
+  </div>
+</a>
+<h1 class="title">Update Vendor</h1>
+<div class="form-holder" #scrollContainer (scroll)="setScrollPos({x: scrollContainer.scrollLeft, y: scrollContainer.scrollTop})">
+  <form class="form-container" id="create-form" [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+    <div class="left-grid">
+      <div class="input-label-container name-container">
+        <label class="label" for="name-input">Vendor Name</label>
+        <input 
+          class="input name-input" 
+          id="name-input" 
+          [style.border-color]="updateForm.controls['name'].invalid && (updateForm.controls['name'].dirty || updateForm.controls['name'].touched) ? 
+            'red' : 
+            'black'"
+          type="text" 
+          formControlName="name" 
+          required="true"
+          minlength="1"
+          maxlength="255"
+          [pattern]="'([\\w]+[ ]?)*'"
+          autocomplete="off"
+          placeholder="Enter Name" 
+          (change)="setTextValue('name')" 
+        />
+        @if (updateForm.controls['name'].invalid && (updateForm.controls['name'].dirty || updateForm.controls['name'].touched)) {
+          <small class="error-text" [hidden]="!updateForm.controls['name'].errors!['required']">Name is Required</small>
+          <small class="error-text" [hidden]="!updateForm.controls['name'].errors!['pattern']">Please Provide a Valid Name between 1 to 255 characters</small>
+        } @else {
+          <small class="error-text invisible">space</small>
+        }
+      </div> 
+      <div class="input-label-container email-container">
+        <label class="label" for="email-input">Vendor Email</label>
+        <input 
+          class="input email-input" 
+          id="email-input" 
+          [style.border-color]="updateForm.controls['email'].invalid && (updateForm.controls['email'].dirty || updateForm.controls['email'].touched) ? 
+            'red' : 
+            'black'"
+          type="text" 
+          formControlName="email" 
+          required="true"
+          minlength="1"
+          maxlength="100"
+          [pattern]="'[\\w\\-\\.]+@([\\w\\-]+[\\.])+[\\w\\-]{2,4}'"
+          autocomplete="off"
+          placeholder="Enter Email" 
+          (change)="setTextValue('email')" 
+        />
+        @if (updateForm.controls['email'].invalid && (updateForm.controls['email'].dirty || updateForm.controls['email'].touched)) {
+          <small class="error-text" [hidden]="!updateForm.controls['email'].errors!['required']">Email is Required</small>
+          <small class="error-text" [hidden]="!updateForm.controls['email'].errors!['pattern']">Please Provide a Valid Email between 1 to 100 characters</small>
+        } @else {
+          <small class="error-text invisible">space</small>
+        }
+      </div>
+      <div class="input-label-container type-container">
+        <label class="label" for="type-input">Vendor Type</label>
+        <select
+          class="input type-input" 
+          id="type-input" 
+          type="text" 
+          required="true"
+          formControlName="type" 
+        >
+          @for (type of typeList; track $index) {
+            <option [value]="type">{{ type }}</option>
+          }
+        </select>
+        <small class="error-text invisible">space</small>
+      </div>
+      <div class="input-label-container purchase-container">
+        <label class="label" for="purchase-input">Total Purchased Amount from Vendor</label>
+        <div class="purchase-money-container">
+          <p>{{ moneyFormat }}</p>
+          <input 
+            class="input purchase-input" 
+            id="purchase-input" 
+            [style.border-color]="updateForm.controls['total_purchase'].invalid && (updateForm.controls['total_purchase'].dirty || updateForm.controls['total_purchase'].touched) ? 
+              'red' : 
+              'black'"
+            type="text" 
+            formControlName="total_purchase" 
+            required="true"
+            min="0"
+            max="999999999999.99"
+            [pattern]="'([0-9]{1,10}\\.?[0-9]{0,2}|[0-9]{0,10}\\.?[0-9]{1,2})'"
+            autocomplete="off"
+            placeholder="Add a Number" 
+            (change)="setNumberValue('total_purchase')" 
+          />
+        </div>
+        @if (updateForm.controls['total_purchase'].invalid && (updateForm.controls['total_purchase'].dirty || updateForm.controls['total_purchase'].touched)) {
+          <small class="error-text" [hidden]="!updateForm.controls['total_purchase'].errors!['required']">Purchased Amount is Required</small>
+          <small class="error-text" [hidden]="!updateForm.controls['total_purchase'].errors!['pattern']">Please Provide a Valid Amount above 0 and with a maximum of 12 digits and 2 decimal places</small>
+        } @else {
+          <small class="error-text invisible">space</small>
+        }
+      </div>
+    </div>
+    <div class="right-grid">
+      <div class="input-label-container date-container">
+        <label class="label" for="date-input">Creation Date of Vendor</label>
+        <div class="date-input-container" #dateInput [(appClickOut)]="dateDropdown">
+          <input 
+            class="input date-input"  
+            id="date-input" 
+            [style.border-color]="updateForm.controls['created_by'].invalid && (updateForm.controls['created_by'].dirty || updateForm.controls['created_by'].touched) ? 
+              'red' : 
+              'black'"
+            type="text" 
+            formControlName="created_by" 
+            required="true"
+            [pattern]="'(([1-2][0-9])|0([1-9])|(3[0-1]))\/((1[0-2])|0([1-9]))\/[0-9]{4}'"
+            autocomplete="off"
+            placeholder="DD/MM/YYYY" 
+            (click)="updateDateUpdate()" 
+            (change)="setDateValue('created_by')" 
+          />
+          <app-date-calendar 
+            [hidden]="!dateDropdown" 
+            [style.top]="scrollY()"
+            [style.left]="scrollX()"
+            [dateSelect]="previousDate" 
+            [pointUp]="pointUp"
+            (dateSelectChange)="setDateValue('created_by', $event)" 
+            [dateFormat]="dateFormat"
+          ></app-date-calendar> 
+        </div>
+        @if (updateForm.controls['created_by'].invalid && (updateForm.controls['created_by'].dirty || updateForm.controls['created_by'].touched)) {
+          <small class="error-text" [hidden]="!updateForm.controls['created_by'].errors!['required']">Date is Required</small>
+          <small class="error-text" [hidden]="!updateForm.controls['created_by'].errors!['pattern']">Please Provide a Valid Date in the format {{ dateFormat | uppercase }}</small>
+        } @else {
+          <small class="error-text invisible">space</small>
+        }
+      </div>
+    </div>
+  </form>
+</div>
+<div class="ending-container">
+  <button class="create-button" type="submit" form="create-form" [disabled]="updateForm.invalid">Update Vendor</button>
+  <p [hidden]="success">Vendor Update Failed, Please Try Again</p>
+  <p [hidden]="newData">Edit Vendor Data to Update</p>
+</div>

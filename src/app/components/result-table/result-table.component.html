@@ -1,0 +1,87 @@
+<div class="table-container">
+  <table class="table-holder">
+    <thead>
+      <tr class="table-header table-row">
+        @for (header of tableDetails(); track $index) {
+          <th class="table-head over-text" [title]="header.column_name | columnCase | titlecase" (click)="updateSort(sort(), header.column_name)">
+            {{ header.column_name | columnCase | titlecase }}
+            <fa-icon [hidden]="sort().column_name !== header.column_name" [icon]="sort().order === 'DESC' ? faCaretDown : faCaretUp"></fa-icon>
+          </th>
+        }
+        <th class="button-space">
+          <button class="edit-button invisible" disabled=true >
+            <fa-icon [icon]="faPencil"></fa-icon>
+          </button>
+          <button class="edit-button invisible" disabled=true >
+            <fa-icon [icon]="faTrashCan"></fa-icon>
+          </button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (!loading()) {
+        <ng-container *ngTemplateOutlet="displayTemplate; context: {
+            data: focusData,
+            buttonData: buttonData,
+            depth: 0,
+          }"
+        ></ng-container>
+      }
+      <tr class="table-row" [hidden]="!loading()">
+        <td class="center-table" [colSpan]="tableDetails().length + 1">
+          <div class="loading"></div>
+          <div class="fail-container" [hidden]="!failedToLoad()">
+            Failed to Load... <button class="reload-button" (click)="reload()">Reload <fa-icon [icon]="faRotateRight"></fa-icon></button>
+          </div>
+        </td>
+      </tr> 
+    </tbody> 
+  </table>
+</div>
+<div class="page-container">
+  <app-pagination 
+    [hidden]="groupby().length > 0" 
+    [rowCount]="rowCount()" 
+    [(limit)]="limit" 
+    [(offset)]="offset" 
+  ></app-pagination>
+</div>
+
+<ng-template #displayTemplate let-data="data" let-buttonData="buttonData" let-depth="depth">
+  @if (depth < groupby().length) {
+    @for (value of data | keyvalue : keepOrder ; track value.key) {
+      <tr class="table-row">
+        <td class="table-button-container over-text" [colSpan]="tableDetails().length + 1" (click)="buttonData[value.key].button = !buttonData[value.key].button">
+          <fa-icon [icon]="buttonData[value.key].button ? faCaretDown : faCaretRight"></fa-icon>
+          <button class="table-button">{{ value.key }}</button>
+        </td>
+      </tr>
+      @if ( buttonData[value.key].button ) {
+        <ng-container *ngTemplateOutlet="displayTemplate; context: {
+            data: data[value.key],
+            buttonData: buttonData[value.key].children,
+            depth: depth + 1,
+          }"
+        ></ng-container>
+      }
+    }
+  } @else {
+    @for (row of data; track $index) {
+      <tr class="table-row">
+        @for (value of row | keyvalue : keepOrder ; track customTrackBy($index, value.key)) {
+          <td class="table-data over-text" [title]="value.value | columnTransform:dateFormat():moneyFormat():tableDetails()[$index].data_type">
+            {{ value.value | columnTransform:dateFormat():moneyFormat():tableDetails()[$index].data_type }}
+          </td>
+        }
+        <td class="button-space button-space-cell">
+          <button class="edit-button" (click)="updateTableRow( row[uniqueColumn()] )">
+            <fa-icon [icon]="faPencil"></fa-icon>
+          </button>
+          <button class="edit-button" (click)="deleteTableRow( row[uniqueColumn()] )">
+            <fa-icon [icon]="faTrashCan"></fa-icon>
+          </button>
+        </td>
+      </tr>
+    }
+  }
+</ng-template>

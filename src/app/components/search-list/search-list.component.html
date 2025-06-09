@@ -1,0 +1,29 @@
+<div [class]="pointUp() ? 'point point-up' : ''"></div>
+<div class="search-list-container">
+  <div class="text-container">
+    <div class="title">
+      <p>{{ listTitle() }}</p>
+      <button class="close-button" type="button" (click)="closeSearch()">
+        <fa-icon [icon]="faX"></fa-icon>
+      </button>
+    </div>
+    <div class="search-container">
+      <input 
+        class="search-input" 
+        type="text" 
+        #searchBar 
+        autocomplete="off"
+        placeholder="Input Value" 
+        [(ngModel)]="searchValue" 
+        (ngModelChange)="changeSearch(searchValue)" 
+      />
+    </div>
+  </div>
+  <div class="border-line"></div>
+  <ul class="list-container" [hidden]="contentList.length === 0">
+    @for (item of contentList; track $index) {
+      <li #contentItem [class.item-focus]="item === inputValue()" (click)="choice(list()[$index])">{{ item | columnCase | titlecase }}</li>
+    }
+  </ul>
+</div>
+<div [class]="pointUp() ? '' : 'point point-down'"></div>

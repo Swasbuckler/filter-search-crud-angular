@@ -1,0 +1,112 @@
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 1024px;
+  z-index: 1;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-bar-filter {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 1;
+  gap: 5px;
+  padding: 5px;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+.search-button {
+  appearance: none;
+  padding: 5px;
+  border: 1px solid gray;
+  background-color: white;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+
+.search-button:hover {
+  background-color: #edfaff;
+}
+
+.filter-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #ebebeb;
+  transition: all 150ms ease-in-out;
+}
+
+.filter-container:hover {
+  background-color: white;
+  box-shadow: 0px 1px 3px gray;
+}
+
+.filter-button {
+  appearance: none;
+  border: none;
+  height: 100%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.filter-button fa-icon {
+  width: 100%;
+  transition: all 150ms ease-in-out;
+}
+
+.filter-content {
+  padding: 0px 5px;
+}
+
+.filter-content p {
+  max-width: 250px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.filter-edit:hover fa-icon {
+  color: #5dceff;
+}
+
+.filter-delete:hover fa-icon {
+  color: red;
+}
+
+.button-left {
+  padding-left: 5px;
+}
+
+.button-right {
+  padding-right: 5px;
+}
+
+.search-form {
+  flex: 1;
+  min-width: 150px;
+}
+
+.search-input {
+  all: unset;
+  padding: 3px;
+  font-size: 1rem;
+  width: 100%;
+  cursor: text;
+}
+
+.dropdown-container {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid gray;
+}

@@ -1,0 +1,14 @@
+<div class="confirmation-container">
+  <div class="back" (click)="onExit()"></div>
+  <div class="confirm-container">
+    <button class="exit-button" type="button" (click)="onExit()">
+      <fa-icon [icon]="faX"></fa-icon>
+    </button>
+    <ng-content select="confirmation-message"></ng-content>
+    <div class="button-container">
+      <button class="confirm-button" (click)="onConfirm()">Confirm</button>
+      <button class="confirm-button" (click)="onExit()">Cancel</button>
+    </div>
+    <ng-content select="error-message"></ng-content>
+  </div>
+</div>

@@ -1,0 +1,152 @@
+.vendor-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 10px;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.header-side {
+  width: 150px;
+}
+
+.create {
+  align-self: flex-start;
+}
+
+.create-button {
+  appearance: none;
+  border: none;
+  padding: 5px;
+  width: 100%;
+  height: 40px;
+  font-size: 1rem;
+  background-color: #d5f0fc;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+
+.create-button:hover {
+  background-color: #5dceff;
+}
+
+.border-line {
+  width: 100%;
+  margin: 3px 0px;
+  border: 1px solid gray;
+}
+
+.border-line-soft {
+  width: 100%;
+  margin: 3px 0px;
+  border: 1px solid rgb(235, 235, 235);
+}
+
+.select-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.select-text {
+  cursor: pointer;
+}
+
+.select-text:hover {
+  background-color: #edfaff;
+}
+
+.select-text-title {
+  font-size: 1.2rem;
+}
+
+.select-text-subtitle {
+  font-size: 1rem;
+}
+
+.select-choice-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.select-filter-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.select-filter-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.select-filter-operator {
+  font-size: 0.75rem;
+}
+
+.select-filter-operator select {
+  cursor: pointer;
+}
+
+.filter-button {
+  appearance: none;
+  border: none;
+  padding: 5px;
+  margin: 3px 0px;
+  font-size: 0.75rem;
+  background-color: #edfaff;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+
+.filter-button:hover {
+  background-color: #5dceff;
+}
+
+.group-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.group-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.group-button {
+  appearance: none;
+  padding: 5px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+
+.group-button:hover:enabled fa-icon {
+  color: #5dceff;
+}
+
+.group-select-container {
+  position: relative;
+}
+
+.message {
+  align-self: center;
+}

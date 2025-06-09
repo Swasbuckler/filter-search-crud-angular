@@ -1,0 +1,107 @@
+<form class="form-container" id="filter-form" [formGroup]="filterForm" (ngSubmit)="onSubmit()" >
+  <div class="label-input-container column">
+    <label class="label column-label">Column</label>
+    <div class="column-input-container fill-container" #columnInput [(appClickOut)]="columnSearch">
+      <div class="column-input" tabindex="0" (click)="setColumnSearch(true)">{{ filterForm.value.column.column_name }}</div>
+      <select 
+        class="form-input"
+        hidden
+        formControlName="column" 
+        required="true" 
+        (click)="setColumnSearch(true)"
+      >
+        @for (thisColumn of tableDetails(); track $index) {
+          <option [ngValue]="thisColumn">{{ thisColumn.column_name }}</option>
+        }
+      </select>
+      @if (columnSearch) {
+        <app-search-list 
+          [style.top]="scrollY()"
+          [style.left]="scrollX()"
+          [style.transform]="pointUp ? '' : 'translateY(-100%)'"
+          listTitle="Search for Column" 
+          [pointUp]="pointUp"
+          [list]="tableDetails()"
+          [valueToString]="columnToString" 
+          [inputValue]="filterForm.value.column"
+          (exit)="setColumnSearch(false)" 
+          (submit)="setColumn($event)"
+        ></app-search-list>
+      }
+    </div>
+  </div>
+  <div class="label-input-container condition">
+    <label class="label condition-label">Condition</label>
+    <select 
+      class="form-input condition-input fill-container" 
+      formControlName="condition" 
+      required="true" 
+      (change)="setCondition()"
+    >
+      @if (filterForm.value.column.data_type === 'text') {
+        @for (thisCondition of textConditionList; track $index) {
+          <option [value]="thisCondition">{{ conditionListTranslate[thisCondition] }}</option>
+        }
+      } @else {
+        @for (thisCondition of conditionList; track $index) {
+          <option [value]="thisCondition">{{ conditionListTranslate[thisCondition] }}</option>
+        }
+      }
+    </select>
+  </div>
+  <div class="values-container">
+    <div class="label-input-container" [style.flex]="['><', '!><'].includes(filterForm.value.condition) ? '0.5 1 auto' : '1 1 auto'">
+      <label class="label value-label">Value</label>
+      <div class="value1-container fill-container" #value1Input [(appClickOut)]="dateCalendar1">
+        <input 
+          class="form-input value-input" 
+          type="text" 
+          formControlName="value1" 
+          minlength="0" 
+          maxlength="255" 
+          [placeholder]="setPlaceholder()" 
+          autocomplete="off"
+          (click)="updateValue1Input()" 
+          (change)="setValue('value1')" 
+        />
+        <app-date-calendar 
+          [hidden]="!(filterForm.value.column.data_type === 'date' && dateCalendar1)" 
+          [style.top]="scrollY()"
+          [style.left]="scrollXValue1()"
+          [style.transform]="pointUp ? '' : 'translateY(-100%)'"
+          [dateSelect]="previousValues.value1" 
+          [pointUp]="pointUp"
+          (dateSelectChange)="setValue('value1', $event)" 
+          [dateFormat]="dateFormat()"
+        ></app-date-calendar>
+      </div>
+    </div>
+    <p [hidden]="!['><', '!><'].includes(filterForm.value.condition)">and</p>
+    <div class="label-input-container" [hidden]="!['><', '!><'].includes(filterForm.value.condition)">
+      <label class="label value-label">Value 2</label>
+      <div class="fill-container" #value2Input [(appClickOut)]="dateCalendar2">
+        <input
+          class="form-input value-input"  
+          type="text" 
+          formControlName="value2" 
+          minlength="0" 
+          maxlength="255" 
+          [placeholder]="setPlaceholder()" 
+          autocomplete="off"
+          (click)="updateValue2Input()" 
+          (change)="setValue('value2')" 
+        />
+        <app-date-calendar 
+          [hidden]="!(filterForm.value.column.data_type === 'date' && dateCalendar2)" 
+          [style.top]="scrollY()"
+          [style.left]="scrollXValue2()"
+          [style.transform]="pointUp ? '' : 'translateY(-100%)'"
+          [dateSelect]="previousValues.value2" 
+          [pointUp]="pointUp"
+          (dateSelectChange)="setValue('value2', $event)" 
+          [dateFormat]="dateFormat()"
+        ></app-date-calendar>
+      </div>
+    </div>
+  </div>
+</form>

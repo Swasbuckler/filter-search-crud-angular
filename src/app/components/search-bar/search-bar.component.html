@@ -1,0 +1,73 @@
+<div class="search-container">
+  <button class="search-button search-search" type="submit" form="search-form">
+    <fa-icon [icon]="faSearch"></fa-icon>
+  </button>
+  <div class="search-bar-filter">
+    @for (filter of groupFilter().filters; track $index) {
+      <div class="filter-container">
+        <button class="filter-button filter-edit button-left" (click)="editFilter( filter )">
+          <fa-icon [icon]="faPencil"></fa-icon>
+        </button>
+        <div class="filter-content">
+          <p>
+            <ng-container *ngTemplateOutlet="filterTemplate; context: { filter: filter }"></ng-container>
+          </p>
+        </div>
+        <button class="filter-button filter-delete button-right" (click)="deleteFilter($index)">
+          <fa-icon [icon]="faX"></fa-icon>
+        </button>
+      </div>
+    }
+    <div [hidden]="groupList().length === 0" class="filter-container">
+      <button class="filter-button filter-edit button-left" (click)="setDropdown(true)">
+        <fa-icon [icon]="faPencil"></fa-icon>
+      </button>
+      <div class="filter-content">
+        <p><i>Group by:</i> {{ groupList() | listDisplay:groupLink | columnCase | titlecase }}</p>
+      </div>
+      <button class="filter-button filter-delete button-right" (click)="deleteGroupBy()">
+        <fa-icon [icon]="faX"></fa-icon>
+      </button>
+    </div>
+    <form class="search-form" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+      <input
+        class="search-input"
+        type="text"
+        formControlName="search"
+        autocomplete="off"
+        [placeholder]="searchPlaceholder()"
+        (focus)="setDropdown(true)"
+      />
+      <input type="submit" hidden />
+    </form>
+  </div>
+  <button class="search-button search-dropdown" (click)="setDropdown(!dropdown())">
+    <fa-icon [icon]="dropdown() ? faCaretUp : faCaretDown"></fa-icon>
+  </button>
+</div>
+<div class="dropdown-container" [hidden]="searchForm.value.search !== '' ? !dropdown() : true">
+  <ng-content select="filter-text"></ng-content>
+</div>
+<div class="dropdown-container" [hidden]="searchForm.value.search === '' ? !dropdown() : true">
+  <ng-content select="filter-drop"></ng-content>
+</div>
+
+<ng-template #filterTemplate let-filter="filter">
+  @if (filter | isFilter) {
+    {{ filter.column.column_name | columnCase | titlecase }}
+    <i>{{ conditionListTranslate[filter.condition] }}</i> 
+    {{ filter.column.data_type === 'text' ? '"' + 
+      (filter.values[0] | columnTransform:dateFormat():moneyFormat():filter.column.data_type) + '"' : 
+      (filter.values[0] | columnTransform:dateFormat():moneyFormat():filter.column.data_type) }}
+    <span [hidden]="!['><', '!><'].includes(filter.condition)">
+      <i>and</i> {{ filter.values[1] | columnTransform:dateFormat():moneyFormat():filter.column.data_type }}
+    </span>
+  } @else { 
+    (
+    @for (nextFilter of filter.filters; track $index) {
+      <span [hidden]="$index === 0">{{ filter.operator }}</span>
+      <ng-container *ngTemplateOutlet="filterTemplate; context: { filter: nextFilter }"></ng-container>
+    } 
+    )    
+  }
+</ng-template>

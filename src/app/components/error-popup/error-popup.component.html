@@ -1,0 +1,9 @@
+<div class="error-container">
+  <div class="back" (click)="onReload()"></div>
+  <div class="reload-container">
+    <ng-content></ng-content>
+    <div class="button-container">
+      <button class="reload-button" (click)="onReload()">Reload <fa-icon [icon]="faRotateRight"></fa-icon></button>
+    </div>
+  </div>
+</div>

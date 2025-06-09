@@ -1,0 +1,189 @@
+<div class="vendor-container">
+  <h1 class="title">Vendors</h1>
+  <div class="header-container">
+    <div class="header-side create">
+      <a [routerLink]="['create']">
+        <button class="create-button" type="button">
+          New <fa-icon [icon]="faPlus"></fa-icon>
+        </button>
+      </a>
+    </div>
+    <app-search-bar
+      #searchBar
+      [selectedColumn]="highlightColumn"
+      [groupFilter]="groupFilter"
+      (groupFilterChange)="filtersUpdate($event)"
+      searchPlaceholder="Search for Vendors..."
+      [dateFormat]="dateFormat"
+      [moneyFormat]="moneyFormat"
+      [(groupList)]="groupby"
+      (groupListChange)="groupUpdate()"
+      [(uniqueIndex)]="uniqueIndex"
+      [(dropdown)]="dropdown"
+      (filterChange)="filterEdit($event)"
+      [(appClickOut)]="dropdown"
+    >
+      <div class="select-container" ngProjectAs="filter-text">
+        <div class="select-text-container">
+          @for (column of searchColumns; track $index) {
+            <p 
+              (mouseenter)="highlightColumn = column"
+              (click)="filterAdd({
+                column: highlightColumn,
+                condition: 'in',
+                values: [searchBar.searchForm.value.search],
+                parent: groupFilter,
+                id: getNextUniqueIndex(),
+              })"
+            >
+              "{{ searchBar.searchForm.value.search }}" in {{ column.column_name }}
+            </p>
+          }
+        </div>
+      </div>
+      <div class="select-container" ngProjectAs="filter-drop">
+        <div class="select-choice-container">
+          <div class="select-filter">
+            <div class="select-filter-container">
+              <h2 class="select-text-title">Filters</h2>
+              <p class="select-filter-operator">
+                The Filter will follow
+                <select [value]="groupFilter.operator" (change)="changeOperator(groupFilter, $event.target!)">
+                  <option value="AND">All</option>
+                  <option value="OR">Any</option>
+                </select>
+                Rules
+              </p>
+            </div>
+            <div class="border-line"></div>
+            <h3 class="select-text-subtitle">Type</h3>
+            <div class="border-line-soft"></div>
+            <div class="select-text-container">
+              <p 
+                class="select-text"
+                (click)="filterAdd({
+                  column: {column_name: 'type', data_type: 'text'},
+                  condition: 'in',
+                  values: ['Goods'],
+                  parent: groupFilter,
+                  id: getNextUniqueIndex(),
+                })"
+              >
+                Goods
+              </p>
+              <p 
+                class="select-text"
+                (click)="filterAdd({
+                  column: {column_name: 'type', data_type: 'text'},
+                  condition: 'in',
+                  values: ['Services'],
+                  parent: groupFilter,
+                  id: getNextUniqueIndex(),
+                })"
+              >
+                Services
+              </p>
+            </div>
+            <div class="border-line-soft"></div>
+            <h3 class="select-text-subtitle select-text" (click)="filterAdd()">Add Custom Filter</h3>
+            <div class="border-line"></div>
+            <div class="select-filter-container">
+              <button class="filter-button" type="button" (click)="filterEdit(groupFilter)">
+                <fa-icon [icon]="faPencil"></fa-icon> Edit Filters
+              </button>
+              <button class="filter-button" type="button" (click)="filterDelete()">
+                Remove All Filters <fa-icon [icon]="faTrashCan"></fa-icon>
+              </button>
+            </div>
+          </div>
+          <div class="select-group">
+            <h2 class="select-text-title">Group By</h2>
+            <div class="border-line" [hidden]="groupby.length === 0"></div>
+            <div class="group-container">
+              @for (group of groupby; track $index) {
+                <div class="group-item">
+                  <p>{{ group | columnCase | titlecase }}</p>
+                  <div class="group-button-container">
+                    <button class="group-button" type="button" [disabled]="$index <= 0" (click)="groupUp($index)">
+                      <fa-icon [icon]="faChevronUp"></fa-icon>
+                    </button>
+                    <button class="group-button" type="button" [disabled]="$index >= groupby.length - 1" (click)="groupDown($index)">
+                      <fa-icon [icon]="faChevronDown"></fa-icon>
+                    </button>
+                    <button class="group-button" type="button" (click)="groupDelete($index)">
+                      <fa-icon [icon]="faTrashCan"></fa-icon>
+                    </button>
+                  </div>
+                </div>
+              }
+            </div>
+            <div class="border-line"></div>
+            <div class="group-select-container">
+              <button class="filter-button" type="button" (click)="setGroupbySearch(true)">
+                <fa-icon [icon]="faPlus"></fa-icon> Add Group
+              </button>
+              @if (groupbySearch) {
+                <app-search-list 
+                  listTitle="Search for Column" 
+                  [list]="tableColumns()"
+                  [valueToString]="stringToString" 
+                  (exit)="setGroupbySearch(false)" 
+                  (submit)="groupAdd($event)"
+                  [(appClickOut)]="groupbySearch"
+                ></app-search-list>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-search-bar>
+    <div class="header-side"></div>
+  </div>
+  <app-result-table
+    [loading]="loading"
+    [failedToLoad]="failToLoad"
+    [tableDetails]="tableDetails()"
+    [tableData]="tableData"
+    [groupby]="groupby"
+    [dateFormat]="dateFormat"
+    [moneyFormat]="moneyFormat"
+    [rowCount]="rowCount"
+    [uniqueColumn]="uniqueColumn"
+    [(sort)]="sort"
+    (sortChange)="retrieveVendorResults()"
+    [(limit)]="limit"
+    (limitChange)="limitUpdate()"
+    [(offset)]="offset"
+    (offsetChange)="retrieveVendorResults()"
+    (updateRow)="rowUpdate($event)"
+    (deleteRow)="openConfirmationPopUp($event)"
+  ></app-result-table>
+</div>
+
+@if (filterPopUp) {
+  <app-filter-popup 
+    [tableDetails]="tableDetails()" 
+    [dateFormat]="dateFormat" 
+    [inputFilter]="focusFilter"
+    [(uniqueIndex)]="uniqueIndex"
+    (exit)="exitFilterPopUp($event)"
+  ></app-filter-popup>
+}
+
+@if (confirmationPopUp) {
+  <app-confirmation-popup
+    (cancel)="exitConfirmationPopUp()"
+    (confirmation)="rowDelete(deleteId!)"
+  >
+    <p class="message" ngProjectAs="confirmation-message">Do you wish to delete Vendor of Id: <b>{{ deleteId }}</b>?</p>
+    <p class="message" ngProjectAs="error-message">{{ errorDeleteMessage }}</p>
+  </app-confirmation-popup>
+}
+
+@if (errorPopUp) {
+  <app-error-popup
+    (reload)="reload()"
+  >
+    <p class="message">There has been an error, Please Reload the Page.</p>
+  </app-error-popup>
+}
