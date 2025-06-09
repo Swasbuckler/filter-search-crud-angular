@@ -49,7 +49,7 @@ The Full Stack Application provides all of the basic CRUD actions on the data st
 
 C - Create | The creation of a new Vendor.
 
-[![View Video](https://github.com/user-attachments/assets/b209881c-b034-482f-820a-77e1ea59445c)]
+<video src="https://github.com/user-attachments/assets/b209881c-b034-482f-820a-77e1ea59445c?raw=true" />\
 Video Example of Creating a new Vendor.
 
 R - Read | Reading of Vendor Data and Grouping Functionality
