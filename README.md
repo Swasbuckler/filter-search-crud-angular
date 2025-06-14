@@ -14,8 +14,13 @@ I will return to working on this project at a later date, as I wish to focus my 
 
 ## What have I Achieved and Learnt through this Project
 
-Through the development cycle of this project I have learnt a lot of key concepts related to Angular, Express and PostgreSQL.\
+Through the development cycle of this project I have learnt a lot of key concepts related to Angular, Express and PostgreSQL.
+
 For Angular specifically, I have gained a greater understand of it's Component Lifecycle, Directives and Pipes, which throughout the Development Process helped guide me to simplify the creation of certain Application Features. I hope to carry over this knowledge to future projects.
+
+For Express, I have developed the Backend Server roughly using the Model-View-Controller (MVC) architecture. Although it is not exactly following MVC, it helped guided me in creating a file structure that helped in development clarity. Using this structure, in an environment where it was not neccessary taught me the significance of setting an architecture and how it helps in development. I hope to carry over this understanding when planning for future projects.
+
+For PostgreSQL, this was the first time I had used and experienced managing a PostgreSQL database in a Personal Project. I have learnt a lot in terms of database communication with the backend server as well as the differences it has to MySQL. In the case where I have to use PostgreSQL for other projects in the future, I hope to used this gathered knowledge.
 
 One of the major challenges I had faced in development was handling Project Scope and Requirements.\
 Initially this Application was envisioned to be part of a larger Full Stack Application as I wanted to create an Inventory management Application. However due to the Project Timeframe I had given myself and the large number of Bugs encountered which expectedly lead to Delays. Thanks to this I had Restructured this project 3 times, cutting down the Project Scope and Requirements each time.\
@@ -27,21 +32,24 @@ In the end, I was able to develop a full stack application that was able to meet
 
 1. C.R.U.D | Application includes all CRUD Actions 
 2. Filtering System | Application includes customizable filters
+3. PostgreSQL Database | Application includes Seeding, Dropping and Manipulating the Database
 
 ### Excluded Features
 
 1. User Login | Was Out of Scope
 2. Charts and Graphs | Was Out of Scope
 
-## Packages Used for the Frontend
+## Packages Used for the Application
 
 1. Angular v19 | For the Frontend Framework
 2. Luxon | For Datetime management
 3. Font Awesome | For UI Icons
+4. Express | For the Backend Server
+5. pg | For communication to PostgreSQL Database
 
 ## Main Features of the Application
 
-Below showcases 2 of the main features of the Full Stack Application. The database was seeded with data related to seed Vendors for an imagined business.
+Below showcases 3 of the main features of the Full Stack Application. The database was seeded with data related to seed Vendors for an imagined business.
 
 ### C.R.U.D
 
@@ -102,3 +110,14 @@ The application provides pagination to allow the user to go through set number /
 <video src="https://github.com/user-attachments/assets/439194b1-af77-42f8-b723-fb8698bd1e3e" >\
 
 Video Example of using the Pagination Function.
+
+### PostgreSQL Database
+
+The database was seeded with data related to seed Vendors for an imagined business.\
+There is a singular database with 2 Tables. One for holding the Types of Vendors and the other to hold all of the data of the Vendors.
+
+<img src="git_images/vendor_types_details.png" height="100px" />\
+The image of the "vendor types" table.
+
+<img src="git_images/vendors_details.png" height="300px" />\
+The image of the "vendors" table.
