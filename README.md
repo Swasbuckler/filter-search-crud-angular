@@ -6,7 +6,8 @@ Odoo's System and Features was a large inspiration in the creation of this syste
 Repository of the Express Backend for this application: https://github.com/Swasbuckler/filter-search-crud-server \
 It will detail the features, database and packages used, which includes details of the PostgreSQL Database and Express Server.
 
-The demo of this Frontend can be accessed here: https://swasbuckler.github.io/filter-search-crud-angular/
+The demo of this Frontend can be accessed here: https://swasbuckler.github.io/filter-search-crud-angular/ \
+This demo mimics the functionalities of the Full Stack Application on your browser through the use of storing and manipulating data in localhost. Please do play around in the demo to view the functions of this project.
 
 Repository of the Alternatively made React Frontend for this application: <i>Work in Progress</i>
 
