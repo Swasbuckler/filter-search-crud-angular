@@ -3,10 +3,10 @@
 For the Full Stack Application, Angular was used to develop this Frontend while Express was used for the Backend.\
 Odoo's System and Features was a large inspiration in the creation of this system.
 
-Repository of the Express Backend for this application: https://github.com/Swasbuckler/filter-search-crud-server\
+Repository of the Express Backend for this application: https://github.com/Swasbuckler/filter-search-crud-server.\
 It will detail the features, database and packages used, which includes details of the PostgreSQL Database and Express Server.
 
-The demo of this Frontend can be accessed here: <i>Work in Progress</i>
+The demo of this Frontend can be accessed here: https://swasbuckler.github.io/filter-search-crud-angular/
 
 Repository of the Alternatively made React Frontend for this application: <i>Work in Progress</i>
 
