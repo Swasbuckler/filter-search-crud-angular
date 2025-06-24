@@ -36,7 +36,7 @@ export class VendorsComponent implements OnInit {
 
   tableData: any[] = [];
   rowCount: number = 0;
-  sort: SortType = { column_name: 'id', order: 'ASC' };
+  sort: SortType = { column_name: 'vendor_id', order: 'ASC' };
   limit: number = 5;
   offset: number = 0;
   groupby: string[] = [];
@@ -150,7 +150,7 @@ export class VendorsComponent implements OnInit {
       next: ( res ) => {
 
         if ( res.success ) {
-
+          
           this.loading = false;
           this.failToLoad = false;
 

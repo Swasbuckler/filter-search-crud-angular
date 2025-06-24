@@ -41,5 +41,5 @@ export class DataServiceService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post( this.apiURL + 'vendors/delete', JSON.stringify({ vendorId }), { headers: headers } );
   }
-
+  
 }

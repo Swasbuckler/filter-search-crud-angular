@@ -326,6 +326,12 @@ export class FilterPopupComponent {
 
     } else {
 
+      for ( let i = 0; i < this.newFilter.filters.length; i++ ) {
+
+        this.newFilter.filters[i].parent = (this.inputFilter() as GroupFilterEdit);
+
+      }
+
       (this.inputFilter() as GroupFilterEdit).filters = this.newFilter.filters;
       (this.inputFilter() as GroupFilterEdit).operator = this.newFilter.operator;
 
