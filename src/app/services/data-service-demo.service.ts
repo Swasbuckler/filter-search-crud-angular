@@ -246,7 +246,11 @@ export class DataServiceDemoService {
 
     }
 
-    return conditionList.length > 0 ? conditionList.reduce( ( accumulator, currentValue ) => accumulator && currentValue ) : true;
+    if ( groupFilter.operator === 'AND' ) {
+      return conditionList.length > 0 ? conditionList.reduce( ( accumulator, currentValue ) => accumulator && currentValue ) : true;
+    } else {
+      return conditionList.length > 0 ? conditionList.reduce( ( accumulator, currentValue ) => accumulator || currentValue ) : true;
+    }
   }
 
   private handleFilter( element: VendorForm, filter: Filter ): boolean {
