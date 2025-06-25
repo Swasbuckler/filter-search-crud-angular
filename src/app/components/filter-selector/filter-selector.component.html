@@ -50,7 +50,7 @@
     </select>
   </div>
   <div class="values-container">
-    <div class="label-input-container" [style.flex]="['><', '!><'].includes(filterForm.value.condition) ? '0.5 1 auto' : '1 1 auto'">
+    <div class="label-input-container value-container">
       <label class="label value-label">Value</label>
       <div class="value1-container fill-container" #value1Input [(appClickOut)]="dateCalendar1">
         <input 
@@ -77,7 +77,7 @@
       </div>
     </div>
     <p [hidden]="!['><', '!><'].includes(filterForm.value.condition)">and</p>
-    <div class="label-input-container" [hidden]="!['><', '!><'].includes(filterForm.value.condition)">
+    <div class="label-input-container value-container" [hidden]="!['><', '!><'].includes(filterForm.value.condition)">
       <label class="label value-label">Value 2</label>
       <div class="fill-container" #value2Input [(appClickOut)]="dateCalendar2">
         <input

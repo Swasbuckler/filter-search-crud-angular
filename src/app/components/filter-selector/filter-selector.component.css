@@ -35,12 +35,8 @@
   grid-column: span 3;
 }
 
-.value2-container {
-  display: flex;
-  flex-direction: row;
-  flex: 0.5 1 auto;
-  align-items: end;
-  gap: 5px;
+.value-container {
+  flex: 1 1 auto;
 }
 
 .label {
